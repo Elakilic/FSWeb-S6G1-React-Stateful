@@ -25828,74 +25828,57 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = Input;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/*
-INPUT Talimatlar
-
-Şu kısa videoyu izleyin:
-https://www.ergineer.com/assets/materials/a664dfe7-input.gif
-
-Bu INPUT'u oluşturmak için kaç adet state dilimine ihtiyacınız var? Başlamadan önce biraz üzerine düşünün!
-
-Evet sadece bir dilim yeterli! İçeride inputun değerini sürekli izleyeceğiz.
-Metnin royalblue veya crimson olacağı, input değerinin uzunluğundan elde edilebilir.
-
-ADIM 0:
-  Aşağıdaki bileşeni inceleyerek ve state hookunu import ederek başlayın.
-
-ADIM 1:
-  'inputDeğeri' ve 'setInputDeğeri' ikili state hookunu oluşturun.
-  Bu state boş bir string olarak yüklenecektir(initialize).
-
-ADIM 2:
-  'inputDeğeri' uzunluğu 10 karakteri geçerse renk crimson olacaktır.
-
-ADIM 3:
-  Bu <div /> içindeki inputa değer girildiğinde hepsini BÜYÜK HARFLERDE göstermesini nasıl sağlayabiliriz?
-
-ADIM 4:
-  Event nesnesinin içinde bulunan state'e input'un değerini atayın
-
-ADIM 5:
-  Input değerinin state'ını boşaltın. Reset hala çalışmıyor bir sonraki adımı inceleyin.
-
-ADIM 6:
-  Inputun başarılı bir şekilde resetlemesi için değerini state'ten almalıdır!
-  <input /> öğesine şu şekilde fazladan bir prop eklememiz gerekiyor: value={inputDeğeri}
-*/
-
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* ADIM 0 */
 
 function Input() {
   /* ADIM 1 */
-
+  var _useState = (0, _react.useState)(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    inputDegeri = _useState2[0],
+    setInputDegeri = _useState2[1];
   var inputuDeğiştir = function inputuDeğiştir(evt) {
     // When the input changes, its whole value can be found inside the event object.
     // Log out the synthetic event object 'evt' and see for yourself.
     var value = evt.target.value;
+    setInputDegeri(value);
 
     /* ADIM 4 */
   };
 
   var reset = function reset() {
+    console.log("input değeri resetlendi: ", inputDegeri);
+    setInputDegeri("");
     /* ADIM 5 */
   };
-  var stil = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'crimson' /* ADIM 2 */
-  };
 
+  var stil = {
+    fontSize: "1.5em",
+    marginBottom: "0.3em",
+    color: inputDegeri.length > 10 ? "crimson" : "inherit"
+  };
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-input container"
-  }, /*#__PURE__*/_react.default.createElement("h2", null, "Input"), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Input"), /*#__PURE__*/_react.default.createElement("p", {
+    style: stil
+  }, inputDegeri), /*#__PURE__*/_react.default.createElement("div", {
     id: "output",
     style: stil
   }), " ", /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
+    value: inputDegeri,
     id: "input",
     type: "text",
-    onChange: inputuDeğiştir
+    onChange: function onChange(event) {
+      return setInputDegeri(event.target.value.toUpperCase());
+    }
   }), " ", /*#__PURE__*/_react.default.createElement("button", {
     id: "resetInput",
     onClick: reset
@@ -25951,7 +25934,7 @@ function RuhHalleri() {
   }, /*#__PURE__*/_react.default.createElement("h2", null, "RuhHalleri"), /*#__PURE__*/_react.default.createElement("div", {
     id: "ruhHali",
     style: stil
-  }, "'Nas\u0131l hissetti\u011Fimi bilmiyorum :-|'"), " ", /* ADIM 3 */ruhHali, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+  }, "'Ruh Halim'"), " ", /* ADIM 3 */ruhHali, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
     id: "mutluEt",
     onClick: mutluEt
   }, "Mutlu Et"), /*#__PURE__*/_react.default.createElement("button", {
@@ -25998,7 +25981,7 @@ function Dondurucu() {
   }, "--+--") /* ADIM 2 */, /*#__PURE__*/_react.default.createElement("button", {
     id: "toggleDondurucu",
     onClick: toggleDondurucu
-  }, "Gizle ", /* STEP 3 */döndürücüAçık ? "Gizle" : "Göster"));
+  }, /* STEP 3 */döndürücüAçık ? "Gizle" : "Göster"));
 }
 },{"react":"../node_modules/react/index.js"}],"components/Kareler.js":[function(require,module,exports) {
 "use strict";
@@ -26007,44 +25990,50 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = Kareler;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/*
-Kareler Talimaları
-
-Aşağıdaki kısa videoyu izleyin:
-https://www.ergineer.com/assets/materials/a664dfe7-kareler.gif
-
-Bu bileşen, bir yandan "kare idlerinin" listesinin kaydını tutar,
-ve şu anda aktif olan id yi tutar. Yani iki dilim kullanılacak!
-Biri kareleri oluşturmak için kullanılır, diğeri ise id yi tutmak için,
-böylece bileşen hangi karenin o anda aktif olduğunu bilir.
-
-Herhangi bir noktada yalnızca bir kare aktif olabilir (ya da hiçbiri)
-
-Aşaıdaki yorumları takip edin.
-*/
-
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //Bu değişkeni YALNIZCA bir durum dilimini yüklemek için kullanın!
-var KareIdListesi = ['sqA', 'sqB', 'sqC', 'sqD'];
+var KareIdListesi = ["sqA", "sqB", "sqC", "sqD"];
 function Kareler() {
+  var _useState = (0, _react.useState)(KareIdListesi),
+    _useState2 = _slicedToArray(_useState, 2),
+    kareler = _useState2[0],
+    setKareler = _useState2[1];
+  var _useState3 = (0, _react.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    aktifKare = _useState4[0],
+    setAktifKare = _useState4[1];
   // State hookunu 2 defa kullanın: 'kareler' ve
   // 'aktifKare' olmak üzere. Birisi kare idlerini _dizi_ olarak tutacak, diğeri ise aktif olan
   // kareyi gözlemleyecek. Sayfa yüklendiğinde aktif kare olmayacak,
   // yani  'aktifKare' null olmalı.
 
   var ClassAdiAl = function ClassAdiAl(id) {
+    return id === aktifKare ? "active" : "";
     // Bu bir click handler değildir, JSX içinde kullanılan bir yardımcıdır(helper).(aşağıya bakın)
     // Eğer argüman olarak verilen id aktif kare state'indeki id ile eşleşirse, class adı 'active' olan bir string döndürecek
     // diğer durumlar için boş döndürecek.
     // Etkisini görmek için kareye sağ tıklayın ve "öğeyi inceleyin".
-    return '';
+    return "";
   };
   var AktifEt = function AktifEt(id) {
+    if (id === aktifKare) {
+      setAktifKare(null);
+    } else {
+      setAktifKare(id);
+    }
     // Bu bir _satır içinden çağırılmış_ click handler yardımcısıdır.
     // id bağımsız değişkenini, stateteki aktif id olacak şekilde ayarlayın
     // eğer zaten aktifse, o zaman önce state i resetlemeliyiz.
   };
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "widget-squares container"
   }, /*#__PURE__*/_react.default.createElement("h2", null, "Kareler"), /*#__PURE__*/_react.default.createElement("div", {
@@ -26072,61 +26061,71 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Programcilar;
 exports.enIyilerListesi = void 0;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-/*
-Programcilar Talimatları
-
-Şu kısa videoyu izleyin:
-https://www.ergineer.com/assets/materials/a664dfe7-programcilar.gif
-
-Bu bileşen, bir yandan programlama alanındaki öncülerin bir listesini,
-ve diğer tarafta o anda öne çıkan programcının idsini izler. Yani 2 adet state dilimi!
-Aynı zaman içinde yalnız bir harika programcıyı öne çıkarabiliriz.
-
-Yorumları takip edin.
-*/
-
+var _react = _interopRequireWildcard(require("react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* ADIM 0  */
 
 // Bu değişkeni YALNIZCA bir state dilimini başlatmak için kullanın!
 // JSX'te şu anda bu kuralı çiğneyen bir şey var...
 // Export syntaxı, test kitaplığının diziyi içe aktarabilmesi için gereklidir.
 var enIyilerListesi = [{
-  id: '1',
-  isim: 'Ada Lovelace'
+  id: "1",
+  isim: "Ada Lovelace"
 }, {
-  id: '2',
-  isim: 'Grace Hopper'
+  id: "2",
+  isim: "Grace Hopper"
 }, {
-  id: '3',
-  isim: 'Evelyn Boyd Granville'
+  id: "3",
+  isim: "Evelyn Boyd Granville"
 }, {
-  id: '4',
-  isim: 'Mary Kenneth Keller'
+  id: "4",
+  isim: "Mary Kenneth Keller"
 }, {
-  id: '5',
-  isim: 'Frances Allen'
+  id: "5",
+  isim: "Frances Allen"
 }, {
-  id: '6',
-  isim: 'Carol Shaw'
+  id: "6",
+  isim: "Carol Shaw"
 }];
 exports.enIyilerListesi = enIyilerListesi;
 function Programcilar() {
+  var _useState = (0, _react.useState)(enIyilerListesi),
+    _useState2 = _slicedToArray(_useState, 2),
+    programcilarListesi = _useState2[0],
+    setProgramcilarListesi = _useState2[1];
+  var _useState3 = (0, _react.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    oneCikanId = _useState4[0],
+    setOneCikanId = _useState4[1];
   // İki state dilimine ihtiyacımız olduğundan, state hooku iki kez kullanmamız gerekecek..
   // Bir yanda programcılar listesi, diğer yanda öne çıkan programcının idsi.
 
   var oneCikaninIsmi = function oneCikaninIsmi() {
+    var oneCikan = programcilarListesi.find(function (dev) {
+      return dev.id === oneCikanId;
+    });
+    return oneCikan ? oneCikan.isim : "";
     // Bunu sona bırakın!
     // Bu bir event handler değil, yardımcıdır. Kullanımını JSX'te gözlemleyin.
     // Öne çıkan geliştiricinin _isim_ adını döndürmek için her iki state dilimini kullanacak.
-    // Closureların güzelliği, argümanlar yoluyla bilgi enjekte etmeye gerek kalmadan programın 
+    // Closureların güzelliği, argümanlar yoluyla bilgi enjekte etmeye gerek kalmadan programın
     // bu bölgesinden her iki state dilimini de "görebilmemiz"dir.
   };
+
+  var kutla = function kutla(id) {
+    setOneCikanId(id);
+  };
   var stil = {
-    fontSize: '1.5em',
-    marginTop: '0.5em',
-    color: 'royalblue' // 🤔 kutlarken renk gold'a dönecek
+    fontSize: "1.5em",
+    marginTop: "0.5em",
+    color: oneCikanId ? "gold" : "royalblue" // 🤔 kutlarken renk gold'a dönecek
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -26143,7 +26142,10 @@ function Programcilar() {
       className: "programmer",
       key: dev.id
     }, dev.isim, " ", /*#__PURE__*/_react.default.createElement("button", {
-      onClick: function onClick() {/* burada dev.id 'yi öne çıkan id'ye atayın */}
+      onClick: function onClick() {
+        kutla(dev.id);
+        /* burada dev.id 'yi öne çıkan id'ye atayın */
+      }
     }, "Kutla"));
   })), /*#__PURE__*/_react.default.createElement("div", {
     id: "featured",
@@ -26152,9 +26154,236 @@ function Programcilar() {
   // Üçlüler, bir şeyin "gerçekliğine" bağlı olarak "bir şeyi veya diğerini" ifade etmek için harikadır..
   // Sözde-kod: öne çıkan true ise metin 1'i oluşturun, aksi takdirde metin 2'yi oluşturun..
   // Sabit kodlanmış false'u doğru değişkenle değiştirin.
-  false ? "\uD83C\uDF89 Hadi ".concat(oneCikaninIsmi(), "'\u0131 kutlayal\u0131m! \uD83E\uDD73") : 'Harika bir programcı seçin'));
+  oneCikanId ? "\uD83C\uDF89 Hadi ".concat(oneCikaninIsmi(), "'\u0131 kutlayal\u0131m! \uD83E\uDD73") : "Harika bir programcı seçin"));
 }
-},{"react":"../node_modules/react/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+  return bundleURL;
+}
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+  return '/';
+}
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+    cssTimeout = null;
+  }, 50);
+}
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"styles.less":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Todos.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+require("../styles.less");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function Todos() {
+  var _useState = (0, _react.useState)([]),
+    _useState2 = _slicedToArray(_useState, 2),
+    todos = _useState2[0],
+    setTodos = _useState2[1];
+  var _useState3 = (0, _react.useState)(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    inputValue = _useState4[0],
+    setInputValue = _useState4[1];
+
+  // Yeni bir yapılacak öğesi ekler
+  var addTodo = function addTodo() {
+    if (inputValue.trim() !== "") {
+      setTodos([].concat(_toConsumableArray(todos), [{
+        text: inputValue,
+        completed: false
+      }]));
+      setInputValue(""); // Input değerini temizler
+    }
+  };
+
+  // Bir yapılacak öğesini tamamlandı olarak işaretler veya iptal eder
+  var toggleTodo = function toggleTodo(index) {
+    var newTodos = _toConsumableArray(todos);
+    newTodos[index].completed = !newTodos[index].completed;
+    setTodos(newTodos);
+  };
+
+  // Bir yapılacak öğesini kaldırır
+  var removeTodo = function removeTodo(index) {
+    var newTodos = _toConsumableArray(todos);
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "todos"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Yap\u0131lacaklar Listesi"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "oyun"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    value: inputValue,
+    onChange: function onChange(e) {
+      return setInputValue(e.target.value);
+    },
+    placeholder: "Yap\u0131lacak ekle..."
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: addTodo
+  }, "Ekle"), /*#__PURE__*/_react.default.createElement("ul", null, todos.map(function (todo, index) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: index,
+      style: {
+        textDecoration: todo.completed ? "line-through" : "none"
+      },
+      onClick: function onClick() {
+        return toggleTodo(index);
+      }
+    }, todo.text, /*#__PURE__*/_react.default.createElement("button", {
+      onClick: function onClick() {
+        return removeTodo(index);
+      }
+    }, "Kald\u0131r"));
+  }))));
+}
+var _default = Todos;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","../styles.less":"styles.less"}],"components/TicTacToe.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+require("../styles.less");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var TicTacToe = function TicTacToe() {
+  var _useState = (0, _react.useState)(Array(9).fill(null)),
+    _useState2 = _slicedToArray(_useState, 2),
+    board = _useState2[0],
+    setBoard = _useState2[1];
+  var _useState3 = (0, _react.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    xIsNext = _useState4[0],
+    setXIsNext = _useState4[1];
+  var handleClick = function handleClick(index) {
+    if (calculateWinner(board) || board[index]) {
+      return;
+    }
+    var newBoard = _toConsumableArray(board);
+    newBoard[index] = xIsNext ? "X" : "O";
+    setBoard(newBoard);
+    setXIsNext(!xIsNext);
+  };
+  var handleRestart = function handleRestart() {
+    setBoard(Array(9).fill(null));
+    setXIsNext(true);
+  };
+  var renderSquare = function renderSquare(index) {
+    return /*#__PURE__*/_react.default.createElement("button", {
+      className: "square",
+      onClick: function onClick() {
+        return handleClick(index);
+      }
+    }, board[index]);
+  };
+  var winner = calculateWinner(board);
+  var status = winner ? "Kazanan: ".concat(winner) : board.every(function (square) {
+    return square !== null;
+  }) ? "Berabere" : "S\u0131radaki Oyuncu: ".concat(xIsNext ? "X" : "O");
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "tictactoe"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "X-O-X Oyunu"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "oyun"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "status"
+  }, status), /*#__PURE__*/_react.default.createElement("div", {
+    className: "board-row"
+  }, renderSquare(0), renderSquare(1), renderSquare(2)), /*#__PURE__*/_react.default.createElement("div", {
+    className: "board-row"
+  }, renderSquare(3), renderSquare(4), renderSquare(5)), /*#__PURE__*/_react.default.createElement("div", {
+    className: "board-row"
+  }, renderSquare(6), renderSquare(7), renderSquare(8))), winner && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleRestart
+  }, "Restart")));
+};
+var calculateWinner = function calculateWinner(squares) {
+  var lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+  for (var i = 0; i < lines.length; i++) {
+    var _lines$i = _slicedToArray(lines[i], 3),
+      a = _lines$i[0],
+      b = _lines$i[1],
+      c = _lines$i[2];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+};
+var _default = TicTacToe;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","../styles.less":"styles.less"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -26165,9 +26394,11 @@ var _RuhHalleri = _interopRequireDefault(require("./components/RuhHalleri"));
 var _Dondurucu = _interopRequireDefault(require("./components/Dondurucu"));
 var _Kareler = _interopRequireDefault(require("./components/Kareler"));
 var _Programcilar = _interopRequireDefault(require("./components/Programcilar"));
+var _Todos = _interopRequireDefault(require("./components/Todos"));
+var _TicTacToe = _interopRequireDefault(require("./components/TicTacToe"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-(0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Sayac.default, null), /*#__PURE__*/_react.default.createElement(_RuhHalleri.default, null), /*#__PURE__*/_react.default.createElement(_Dondurucu.default, null), /*#__PURE__*/_react.default.createElement(_Input.default, null), /*#__PURE__*/_react.default.createElement(_Kareler.default, null), /*#__PURE__*/_react.default.createElement(_Programcilar.default, null)), document.querySelector('#root'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Sayac":"components/Sayac.js","./components/Input":"components/Input.js","./components/RuhHalleri":"components/RuhHalleri.js","./components/Dondurucu":"components/Dondurucu.js","./components/Kareler":"components/Kareler.js","./components/Programcilar":"components/Programcilar.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _reactDom.render)( /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Sayac.default, null), /*#__PURE__*/_react.default.createElement(_RuhHalleri.default, null), /*#__PURE__*/_react.default.createElement(_Dondurucu.default, null), /*#__PURE__*/_react.default.createElement(_Input.default, null), /*#__PURE__*/_react.default.createElement(_Kareler.default, null), /*#__PURE__*/_react.default.createElement(_Programcilar.default, null), /*#__PURE__*/_react.default.createElement(_Todos.default, null), /*#__PURE__*/_react.default.createElement(_TicTacToe.default, null)), document.querySelector("#root"));
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Sayac":"components/Sayac.js","./components/Input":"components/Input.js","./components/RuhHalleri":"components/RuhHalleri.js","./components/Dondurucu":"components/Dondurucu.js","./components/Kareler":"components/Kareler.js","./components/Programcilar":"components/Programcilar.js","./components/Todos":"components/Todos.js","./components/TicTacToe":"components/TicTacToe.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -26192,7 +26423,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50360" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57344" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

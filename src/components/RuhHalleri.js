@@ -60,7 +60,7 @@ export default function RuhHalleri() {
     <div className="widget-moods container">
       <h2>RuhHalleri</h2>
       <div id="ruhHali" style={stil}>
-        'Nasıl hissettiğimi bilmiyorum :-|'
+        'Ruh Halim'
       </div>{" "}
       {/* ADIM 3 */ ruhHali}
       <div>
